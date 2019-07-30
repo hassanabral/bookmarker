@@ -62,16 +62,17 @@ const fetchBookmarks = () => {
   // Get bookmarks from localStorage
   const bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
   // Get output id
-   const bookmarksResults = document.getElementById('bookmarksResults');
+  const bookmarksResults = document.getElementById('bookmarksResults');
   // Build output
   bookmarksResults.innerHTML = '';
-   bookmarks && bookmarks.forEach(bookmark => {
-      const { name, url } = bookmark;
-      bookmarksResults.innerHTML += '<div class="list-group-item p-4">' +
-        '<h4>' + name +
-        '<a class="btn btn-outline-secondary ml-2" target="_blank" href="//' + url + '">Visit</a>' +
-        '<a onclick="removeBookmark(\'' + url + '\')" class="btn btn-outline-danger ml-2" href="#">Remove</a>' +
-        '</h4>' +
-        '</div>';
-    })
+  bookmarks && bookmarks.forEach(bookmark => {
+    const { name, url } = bookmark;
+    bookmarksResults.innerHTML += `
+      <div class="list-group-item p-4">
+        <h4>${name}
+          <a class="btn btn-outline-secondary ml-2" target="_blank" href="//${url}">Visit</a>
+          <a onclick="removeBookmark(\'${url}\')" class="btn btn-outline-danger ml-2" href="#">Remove</a>
+        </h4>
+      </div>`;
+  })
 };
